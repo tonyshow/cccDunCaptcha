@@ -1,3 +1,6 @@
 [submodule "packages/gitTool"]
 	path = packages/gitTool
 	url = https://github.com/tonyshow/gitTool.git
+[submodule "packages/cccEngineDefault"]
+	path = packages/cccEngineDefault
+	url = https://github.com/tonyshow/cccEngineDefault.git
