@@ -1,2 +1,7 @@
 temp
 library
+buildConfig.js
+.DS_Store
+*/**._DS_Store
+._DS_Store
+.*.*

@@ -5,24 +5,13 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class fristScene extends cc.Component {
-
-    @property(cc.Label)
-    label: cc.Label = null;
-
-    @property
-    text: string = 'hello';
-
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {}
-
-    start () {
-
-    }
-
-    // update (dt) {}
+  private AppClassName: string = "org/cocos2dx/javascript/AppActivity";
+  eve() {
+    jsb.reflection.callStaticMethod(this.AppClassName, "openCaptcha", "()V");
+  }
+  // update (dt) {}
 }

@@ -78,10 +78,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 12
+        "__id__": 13
       },
       {
-        "__id__": 13
+        "__id__": 14
+      },
+      {
+        "__id__": 15
       }
     ],
     "_prefab": null,
@@ -171,7 +174,7 @@
       "array": [
         0,
         0,
-        252.8794179050561,
+        439.9409051224949,
         0,
         0,
         0,
@@ -259,8 +262,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 40
+      "width": 200,
+      "height": 80
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -328,8 +331,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 40
+      "width": 200,
+      "height": 80
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -390,8 +393,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 40
+      "width": 140,
+      "height": 100.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -441,10 +444,10 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "测试",
-    "_N$string": "测试",
-    "_fontSize": 20,
-    "_lineHeight": 40,
+    "_string": "验证",
+    "_N$string": "验证",
+    "_fontSize": 70,
+    "_lineHeight": 80,
     "_enableWrapText": false,
     "_N$file": null,
     "_isSystemFontUsed": true,
@@ -455,7 +458,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 1,
+    "_N$overflow": 0,
     "_N$cacheMode": 1,
     "_id": "ddATJ6DARFILn42uANQ4dX"
   },
@@ -530,7 +533,11 @@
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 12
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$transition": 2,
@@ -601,6 +608,16 @@
     "_id": "aeLn5QpUtC767ybw5tgV0Z"
   },
   {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 2
+    },
+    "component": "",
+    "_componentId": "9b474FetUhD95T6QFy4FSWT",
+    "handler": "eve",
+    "customEventData": ""
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -643,5 +660,15 @@
     "_originalWidth": 0,
     "_originalHeight": 0,
     "_id": "03qrCBREZBeL7ZM6+4GhdL"
+  },
+  {
+    "__type__": "9b474FetUhD95T6QFy4FSWT",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_id": "c16Wf3HO9Pk4jAH9xU6c67"
   }
 ]
