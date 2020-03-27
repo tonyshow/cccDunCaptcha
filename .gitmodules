@@ -4,3 +4,6 @@
 [submodule "packages/cccEngineDefault"]
 	path = packages/cccEngineDefault
 	url = https://github.com/tonyshow/cccEngineDefault.git
+[submodule "packages/tools"]
+	path = packages/tools
+	url = https://github.com/tonyshow/tools.git
