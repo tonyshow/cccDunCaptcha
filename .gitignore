@@ -5,3 +5,4 @@ buildConfig.js
 */**._DS_Store
 ._DS_Store
 .*.*
+packages/pack/android/.gradle

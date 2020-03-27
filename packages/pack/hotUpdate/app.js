@@ -4,7 +4,7 @@ let path = require("path");
 var ccc = require('../../tools/utilTool/ccc');
 var child_process = require("child_process");
 var buildConfig = require("./../buildconfig");
-var cccEngineCfg = require("./../../cccEngineDefault/cccEngineCfg");
+var cccEngineCfg = require("../../cccEngineDefault/cfg/cfgCCCEngine");
 var buildShellDict = [];
 // apk输出路径
 // var apkOutputPath = './output_apk/';
