@@ -4,3 +4,6 @@
 [submodule "packages/tools"]
 	path = packages/tools
 	url = https://github.com/tonyshow/tools.git
+[submodule "packages/pack"]
+	path = packages/pack
+	url = https://github.com/tonyshow/pack.git
