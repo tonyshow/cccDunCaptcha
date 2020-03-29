@@ -7,3 +7,4 @@ buildConfig.js
 .*.*
 packages/pack/android/.gradle
 build
+packages/node_modules
