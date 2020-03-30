@@ -105,6 +105,16 @@
       ]
     }
   },
-  "panels": {},
-  "panelLabelWidth": {}
+  "panels": {
+    "builder": {
+      "x": 706,
+      "y": 53,
+      "width": 654,
+      "height": 722
+    }
+  },
+  "panelLabelWidth": {
+    "builder": null
+  },
+  "panelLabelWidth.builder": null
 }
