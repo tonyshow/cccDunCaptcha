@@ -7,35 +7,35 @@ app.getCfgAll = function()
         {
             updateLevel: 2,
             describe: "引擎自定义修改",
-            modulePath: "./../../",
+            modulePath: "./../../../",
             path: 'packages/cccEngineDefault',
             url: "https://github.com/tonyshow/cccEngineDefault.git"
         },
         {
             updateLevel: 2,
             describe: "工具",
-            modulePath: "./../../",
+            modulePath: "./../../../",
             path: 'packages/tools',
             url: "https://github.com/tonyshow/tools.git"
         },
         {
             updateLevel: 2,
             describe: "打包",
-            modulePath: "./../../",
+            modulePath: "./../../../",
             path: 'packages/pack',
             url: "https://github.com/tonyshow/pack.git"
         },
         {
             updateLevel: 2,
             describe: "通用模块",
-            modulePath: "./../../",
+            modulePath: "./../../../",
             path: 'assets/common',
             url: "https://github.com/tonyshow/cccCommonSrc.git"
         },
         {
             updateLevel: 2,
             describe: "通用模块资源",
-            modulePath: "./../../",
+            modulePath: "./../../../",
             path: 'assets/resources/common',
             url: "https://github.com/tonyshow/cccResCommon.git"
         }
