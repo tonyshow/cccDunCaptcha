@@ -7,3 +7,9 @@
 [submodule "packages/pack"]
 	path = packages/pack
 	url = https://github.com/tonyshow/pack.git
+[submodule "assets/common"]
+	path = assets/common
+	url = https://github.com/tonyshow/cccCommonSrc.git
+[submodule "assets/resources/common"]
+	path = assets/resources/common
+	url = https://github.com/tonyshow/cccResCommon.git
