@@ -25,6 +25,7 @@ export function doNewGlobleHelper(){
   gloablHelper=new GloablHelper();
   gloablHelper.doNew();
   setGloabl( gloablHelper);
+  window['platform']=gloablHelper.platform;
   return gloablHelper;
 }
 export var gloablHelper: GloablHelper;

@@ -104,6 +104,10 @@ export default class SceneAutoWorkHelper extends BaseScene {
 
     //   (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), '', data.validate);
     // });
+
+    this.addListerNet('captcha',(validate)=>{
+          (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), '', validate);
+    });
   }
   getShowShareTime(_sharTime) {
     if (_sharTime == 0) {
