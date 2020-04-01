@@ -19,3 +19,6 @@
 [submodule "assets/libs"]
 	path = assets/libs
 	url = https://github.com/tonyshow/libs.git 
+[submodule "assets/resources/commonRes"]
+	path = assets/resources/commonRes
+	url = https://github.com/tonyshow/cccResCommon.git
