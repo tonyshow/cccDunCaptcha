@@ -10,7 +10,39 @@ export default class NetHelper extends BaseHttp {
     super();
   }
   public gameShortName: any = "";
-  doRegister(_acc: any, _pwd: any, telephone?: number, _code?: any, verifyInput?: string): boolean {
+  //注册-》登录=》签到
+  doRLS(_acc: any, _pwd: any, telephone?: number, _code?: any, verifyInput?: string,finshCb?:Function){
+      this.doRegister(_acc,_pwd,telephone,_code,verifyInput,(errRegister)=>{
+        if(!!errRegister){
+          return;
+        }  
+         setTimeout(()=>{
+          this.doLS(_acc,_pwd,finshCb); 
+         },3000)
+   
+      })
+  }
+   //登录=》签到
+  doLS(_acc: any, _pwd: any,finshCb?:Function){
+    this.doLogin(_acc,_pwd,(errLogin,loginInfo)=>{
+      if(!!errLogin){
+        return;
+      } 
+      gloablHelper.mgrMsg.showPrompt("登录成功")
+      setTimeout(()=>{
+        this.doSign((errSign)=>{
+          if(!!errSign){
+            return;
+          }
+          gloablHelper.mgrMsg.showPrompt("签到成功")
+            if(!!finshCb){
+              finshCb();
+            }
+        },loginInfo.token)
+       },3000) 
+    })
+  }
+  doRegister(_acc: any, _pwd: any, telephone?: number, _code?: any, verifyInput?: string,finshCb?:Function): boolean {
     //子类自己实现业务逻辑
     if (this.getCfg().cardStopType == EnumCardShopHelper.NONE) {
       return true;
@@ -24,11 +56,14 @@ export default class NetHelper extends BaseHttp {
   doLogin(_acc: any, _pwd: any, _cb?: Function) {
     //子类自己实现
     let net = new BaseHttp();
+    console.log(`登录请求->_acc=${_acc},_pwd=${_pwd}`)
     return net;
   }
+  // 签到
   doSign(_cb, ...arg) {
     //子类自己实现
     let net = new BaseHttp();
+    console.log(`签到请求`)
     return net;
   }
   getCfg(): any {
@@ -71,7 +106,7 @@ export default class NetHelper extends BaseHttp {
       onVerify: (err, data) => {
         if (!err) {
           this.destroyCloseCaptchaIns();
-          this.captchaInsCb(data);
+          this.captchaInsCb(data.validate);
           this.doInitCaptchaIns(this.captchaInsCb)
           return;
         }

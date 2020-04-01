@@ -22,7 +22,7 @@ export default class Net34cc extends NetHelper {
     }
   }
   // 44c1f58349454aa2932ef2c062383c78
-  doRegister(_acc: any, _pwd: any, telephone?: number, _code?: any, verifyInput?: string): boolean {
+  doRegister(_acc: any, _pwd: any, telephone?: number, _code?: any, verifyInput?: string,finshCb?:Function): boolean {
     let baseIsRegister = super.doRegister(_acc, _pwd, telephone, _code, verifyInput);
     if (!baseIsRegister) {
 
@@ -51,6 +51,9 @@ export default class Net34cc extends NetHelper {
     net.post(iphoneRegisterPost, JSON.stringify(data), (serverInfo) => {
       console.log(serverInfo);
       gloablHelper.mgrMsg.showPrompt("注册成功")
+      if(!!finshCb){ 
+        finshCb(null,serverInfo)
+      }
     });
     return true;
   }
@@ -76,7 +79,7 @@ export default class Net34cc extends NetHelper {
           // 成功 currentData 
           tmpJData.currentData.member.account = tmpJData.currentData.member.memberAcct;
           tmpJData.currentData.member.token = tmpJData.currentData.token;
-          tmpJData.currentData.member.isLogin = true;
+          tmpJData.currentData.member.isLogin = true; 
           _cb(null, tmpJData.currentData.member);
         } else {
           _cb(tmpJData.currentStatus, serverInfo);

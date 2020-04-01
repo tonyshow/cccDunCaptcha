@@ -104,15 +104,20 @@ export default class SceneAutoWorkHelper extends BaseScene {
 
     if (!cc.sys.isNative) {
       //初始化网易云注册 
-      (gloablHelper.mgrNet as MgrNetHelper).netGame.doInitCaptchaIns((data) => {
-        console.log("收到网易云验证码" + JSON.stringify(data));
-        (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), '', data.validate);
+      (gloablHelper.mgrNet as MgrNetHelper).netGame.doInitCaptchaIns((validate) => {
+        console.log("收到网易云验证码" + validate);
+        // (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), '', data.validate);
+        (gloablHelper.mgrNet as MgrNetHelper).netGame.doRLS(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate,()=>{
+          this.eveRandAccountBtn();
+        })
       });
-    }
-
+    } 
 
     this.addListerNet('captcha', (validate) => {
-      (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate);
+      // (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate); 
+      (gloablHelper.mgrNet as MgrNetHelper).netGame.doRLS(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate,()=>{
+        this.eveRandAccountBtn();
+      })
     });
   }
   getShowShareTime(_sharTime) {
@@ -247,10 +252,9 @@ export default class SceneAutoWorkHelper extends BaseScene {
 
     if (!cc.sys.isNative) {
       (gloablHelper.mgrNet as MgrNetHelper).netGame.getCaptchaIns().popUp()
-    }
-
-
-    gloabl.platform.openCaptcha();
+    }else{
+      gloabl.platform.openCaptcha();
+    } 
   }
   //执行导入
   eveImportAccount() {
