@@ -38,6 +38,20 @@ app.getCfgAll = function()
             modulePath: "./../../../",
             path: 'assets/resources/common',
             url: "https://github.com/tonyshow/cccResCommon.git"
+        },
+        {
+            updateLevel: 2,
+            describe: "多语言",
+            modulePath: "./../../../",
+            path: 'packages/i18n',
+            url: "https://github.com/tonyshow/i18n.git"
+        },
+        {
+            updateLevel: 2,
+            describe: "第三方库",
+            modulePath: "./../../../",
+            path: 'packages/libs',
+            url: "https://github.com/tonyshow/libs.git"
         }
     ];
     return list;
