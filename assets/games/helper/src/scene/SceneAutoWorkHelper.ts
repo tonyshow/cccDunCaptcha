@@ -102,12 +102,14 @@ export default class SceneAutoWorkHelper extends BaseScene {
     this.eveCloseAddNewAccount();
     this.gameNameLab.string = this.currGameCfg.chineseName;
 
-    //初始化网易云注册 
-    // (gloablHelper.mgrNet as MgrNetHelper).netGame.doInitCaptchaIns((data) => {
-    //   console.log("收到网易云验证码" + JSON.stringify(data));
+    if (!cc.sys.isNative) {
+      //初始化网易云注册 
+      (gloablHelper.mgrNet as MgrNetHelper).netGame.doInitCaptchaIns((data) => {
+        console.log("收到网易云验证码" + JSON.stringify(data));
+        (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), '', data.validate);
+      });
+    }
 
-    //   (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), '', data.validate);
-    // });
 
     this.addListerNet('captcha', (validate) => {
       (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate);
@@ -241,7 +243,13 @@ export default class SceneAutoWorkHelper extends BaseScene {
     this.eveImportAccount();
     this.edAccount.string = acc
     this.edPassword.string = pwd;
-    // (gloablHelper.mgrNet as MgrNetHelper).netGame.getCaptchaIns().popUp()
+
+
+    if (!cc.sys.isNative) {
+      (gloablHelper.mgrNet as MgrNetHelper).netGame.getCaptchaIns().popUp()
+    }
+
+
     gloabl.platform.openCaptcha();
   }
   //执行导入

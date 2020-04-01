@@ -50,6 +50,7 @@ export default class Net34cc extends NetHelper {
     net.setContentType("application/json;charset=UTF-8");
     net.post(iphoneRegisterPost, JSON.stringify(data), (serverInfo) => {
       console.log(serverInfo);
+      gloablHelper.mgrMsg.showPrompt("注册成功")
     });
     return true;
   }
@@ -101,7 +102,7 @@ export default class Net34cc extends NetHelper {
         // {"currentData":{"promoSetId":68,"siteCode":"jeroi","money":0.13,"repeat":true,"rewardType":1,"lastUpdateUser":"david_jeroi","id":726,"sort":1,"lastUpdateTime":"2020-03-04 23:17:39"},"currentStatus":"200"}
         let tmpJData = JSON.parse(serverInfo)
         if (!!tmpJData && tmpJData.currentStatus == 200) {
-          _cb(null, tmpJData);
+          _cb(null, tmpJData.currentData);
         } else {
           // 错误已经签到
           _cb(tmpJData.currentStatus, tmpJData);
