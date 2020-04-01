@@ -38,7 +38,7 @@ export default class Net34cc extends NetHelper {
         userPassword: md5password,
         realName: chineseRandomName.generate(),
         phoneNum: telephone,
-        planCode: Utils.randomNum(100, 9999),
+        planCode: _code,
         version: 2,
         verifyInput: verifyInput,
         siteCode: "jeroi"
@@ -69,12 +69,12 @@ export default class Net34cc extends NetHelper {
     net.setContentType("application/json;charset=UTF-8");
     net.post(loginPost, JSON.stringify(data), (serverInfo) => {
       console.log(serverInfo);
-      if (!!_cb) {  
+      if (!!_cb) {
         let tmpJData = JSON.parse(serverInfo)
         if (!!tmpJData && tmpJData.currentStatus == 200) {
           // 成功 currentData 
-          tmpJData.currentData.member.account=tmpJData.currentData.member.memberAcct;
-          tmpJData.currentData.member.token=tmpJData.currentData.token; 
+          tmpJData.currentData.member.account = tmpJData.currentData.member.memberAcct;
+          tmpJData.currentData.member.token = tmpJData.currentData.token;
           tmpJData.currentData.member.isLogin = true;
           _cb(null, tmpJData.currentData.member);
         } else {
@@ -102,7 +102,7 @@ export default class Net34cc extends NetHelper {
         let tmpJData = JSON.parse(serverInfo)
         if (!!tmpJData && tmpJData.currentStatus == 200) {
           _cb(null, tmpJData);
-        } else { 
+        } else {
           // 错误已经签到
           _cb(tmpJData.currentStatus, tmpJData);
         }

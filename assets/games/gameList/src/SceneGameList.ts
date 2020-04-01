@@ -21,9 +21,8 @@ export default class SceneGameList extends BaseScene {
 
   @property(cc.Node)
   itemParentPos: cc.Node = null;
-
+  //  ftnn: '飞艇🐂🐂',
   gameList = {
-    ftnn: '飞艇🐂🐂',
     helper: '游戏助手'
   };
   onLoad() {
