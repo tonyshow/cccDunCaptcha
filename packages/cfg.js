@@ -36,7 +36,7 @@ app.getCfgAll = function()
             updateLevel: 2,
             describe: "通用模块资源",
             modulePath: "./../../../",
-            path: 'assets/resources/common',
+            path: 'assets/resources/commonRes',
             url: "https://github.com/tonyshow/cccResCommon.git"
         },
         {
