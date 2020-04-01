@@ -50,7 +50,7 @@ app.getCfgAll = function()
             updateLevel: 2,
             describe: "第三方库",
             modulePath: "./../../../",
-            path: 'packages/libs',
+            path: 'assets/libs',
             url: "https://github.com/tonyshow/libs.git"
         }
     ];
