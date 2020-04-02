@@ -42,7 +42,7 @@ export default class PlayerWorkDataHelperCtr extends BasePreb {
   public account: any = null;
   public password: any = null;
   playerInfo: any = {};
-  gameShortName:string="";
+  gameShortName: string = "";
   onLoad() {
     this.accStateAnimNode.active = false;
     this.node.width = this.node.parent.width;
@@ -50,8 +50,8 @@ export default class PlayerWorkDataHelperCtr extends BasePreb {
     w.left = 0;
     w.right = 0;
     w.updateAlignment();
-    this.node.x = this.node.width
-    this.node.runAction(cc.moveTo(0.2, 0, 0));
+    // this.node.x = this.node.width
+    // this.node.runAction(cc.moveTo(0.2, 0, 0));
   }
   public setAccount(_value) {
     this.account = _value;
@@ -65,33 +65,33 @@ export default class PlayerWorkDataHelperCtr extends BasePreb {
   }
   public setImoortTime(_value) {
     this.importTimeLb.string = '导入时间:' + _value;
-  } 
-  public setShareTime(_value) {
- 
   }
-  public refreshMoney(_money?:any) {
-    let info =  (gloablHelper.mgrData as  MgrDataHelper).getAccountInfo(this.gameShortName,this.account);
-    this.shareTimeLb.string = '金币:' + (_money || (info.money||0));
+  public setShareTime(_value) {
+
+  }
+  public refreshMoney(_money?: any) {
+    let info = (gloablHelper.mgrData as MgrDataHelper).getAccountInfo(this.gameShortName, this.account);
+    this.shareTimeLb.string = '金币:' + (_money || (info.money || 0));
   }
   public setNo(_value) {
     this.noLabel.string = '' + _value;
-  } 
+  }
   public setActive(_is: boolean = false) {
     this.rmBtn.active = _is;
-  } 
-  public setBgState(_accState: EnumAccountStateHelper = EnumAccountStateHelper.NONE){
-      this.node.color = this.colorList[_accState]
+  }
+  public setBgState(_accState: EnumAccountStateHelper = EnumAccountStateHelper.NONE) {
+    this.node.color = this.colorList[_accState]
   }
   // 设置UI状态
-  public showTips(_accState: EnumColoeHelper = EnumColoeHelper.NONE, txt: string = '') { 
-    this.accStateAnimLb.node.color= this.tipsColorList[_accState]
+  public showTips(_accState: EnumColoeHelper = EnumColoeHelper.NONE, txt: string = '') {
+    this.accStateAnimLb.node.color = this.tipsColorList[_accState]
     this.accStateAnimNode.active = true;
     this.accStateAnimNode.opacity = 0;
     this.accStateAnimNode.x = 0;
     this.accStateAnimNode.stopAllActions();
     let totalTime = 2;
-    let a = cc.sequence([cc.moveBy(totalTime*0.4, -10, 0), cc.delayTime(totalTime*0.4), cc.moveBy(totalTime*0.2, -10, 0)])
-    let b = cc.sequence([cc.fadeIn(totalTime*0.2), cc.delayTime(totalTime*0.6), cc.fadeOut(totalTime*0.2)])
+    let a = cc.sequence([cc.moveBy(totalTime * 0.4, -10, 0), cc.delayTime(totalTime * 0.4), cc.moveBy(totalTime * 0.2, -10, 0)])
+    let b = cc.sequence([cc.fadeIn(totalTime * 0.2), cc.delayTime(totalTime * 0.6), cc.fadeOut(totalTime * 0.2)])
     let act = cc.spawn([a, b])
     this.accStateAnimLb.string = txt;
     this.accStateAnimNode.runAction(act);
@@ -108,13 +108,13 @@ export default class PlayerWorkDataHelperCtr extends BasePreb {
   public setPlayerInfo(_playerInfo: any) {
     this.playerInfo = _playerInfo;
   }
-  public setGameShortName(gameShortName){
-    this.gameShortName=gameShortName;
+  public setGameShortName(gameShortName) {
+    this.gameShortName = gameShortName;
   }
   public eve() {
     gloablHelper.mgrMsg.show("MsgLookAccHelper", (ctr: MsgLookAccHelper, node: cc.Node) => {
       //  this.account
-      let info =  (gloablHelper.mgrData as  MgrDataHelper).getAccountInfo(this.gameShortName,this.account);
+      let info = (gloablHelper.mgrData as MgrDataHelper).getAccountShowInfo(this.gameShortName, this.account);
       ctr.addItems(info);
     });
   }

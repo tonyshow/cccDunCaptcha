@@ -95,8 +95,8 @@ export default class Net616 extends NetHelper {
     });
     return null;
   }
-  doSign() {
-    let net: BaseHttp = super.doSign();
+  doSign(_cb, ...arg) {
+    let net: BaseHttp = super.doSign(_cb, ...arg);
     return net;
   }
 }

@@ -11,16 +11,16 @@ export default class MgrDataHelper extends BaseMgrData {
   // public kaShangData
   //auto Definition variable end
   constructor() {
-    super(); 
+    super();
   }
 
-  protected getCfgNew():any{
-    let cfg =super.getCfgNew(); 
+  protected getCfgNew(): any {
+    let cfg = super.getCfgNew();
     this.accountList = {};
-    cfg['account']=AccountHelper; 
-    cfg['configPrefab']=ConfigPrefabPathHelper; 
+    cfg['account'] = AccountHelper;
+    cfg['configPrefab'] = ConfigPrefabPathHelper;
     return cfg;
-  } 
+  }
   //auto Definition function start
   public initLocalStorage(_gameShortName) {
     let account_helper_list = gloablHelper.mgrData.storage.getItem('account_helper_list' + _gameShortName);
@@ -34,11 +34,12 @@ export default class MgrDataHelper extends BaseMgrData {
     let listHelp = new AccountListHelper();
     if (!!account_helper_list) {
       for (let key in account_helper_list) {
-        let info = account_helper_list[key]; 
+        let info = account_helper_list[key];
         let accountHelper = new currGameCfg.accountData();
         accountHelper.account = info.account;
         accountHelper.password = info.password;
         accountHelper.importTime = info.importTime
+        accountHelper.money = info.money
         accountHelper.shareTime = info.shareTime;
         listHelp.add(info.account, accountHelper);
       }
@@ -47,6 +48,7 @@ export default class MgrDataHelper extends BaseMgrData {
     return account_helper_list;
   }
 
+  //刷新到本地
   public refreshLocalStorage(_gameShortName) {
     this._init(_gameShortName);
     let data = this.accountList[_gameShortName].getJson();
@@ -74,18 +76,23 @@ export default class MgrDataHelper extends BaseMgrData {
   }
 
   // info.account 必须带此参数
-  public refreshAccount(_gameShortName,info:any){
+  public refreshAccount(_gameShortName, info: any) {
     if (null == this.accountList[_gameShortName]) {
-        return;
+      return;
     }
     (this.accountList[_gameShortName] as AccountListHelper).refreshAccount(info)
   }
 
-  public getAccountInfo(_gameShortName:string,account:string){
+  public getAccountInfo(_gameShortName: string, account: string) {
     return (this.accountList[_gameShortName] as AccountListHelper).getAccountInfo(account)
   }
 
-  public getAccount(_gameShortName:string,account:string){
+  public getAccountShowInfo(_gameShortName: string, account: string) {
+    return (this.accountList[_gameShortName] as AccountListHelper).getAccountShowInfo(account)
+  }
+
+
+  public getAccount(_gameShortName: string, account: string) {
     return (this.accountList[_gameShortName] as AccountListHelper).getAccount(account)
   }
   //auto Definition function end

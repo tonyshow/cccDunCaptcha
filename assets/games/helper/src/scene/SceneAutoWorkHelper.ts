@@ -106,16 +106,13 @@ export default class SceneAutoWorkHelper extends BaseScene {
       //初始化网易云注册 
       (gloablHelper.mgrNet as MgrNetHelper).netGame.doInitCaptchaIns((validate) => {
         console.log("收到网易云验证码" + validate);
-        // (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), '', data.validate);
-        (gloablHelper.mgrNet as MgrNetHelper).netGame.doRLS(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate,()=>{
+        (gloablHelper.mgrNet as MgrNetHelper).netGame.doRLS(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate, () => {
           this.eveRandAccountBtn();
         })
       });
-    } 
-
+    }
     this.addListerNet('captcha', (validate) => {
-      // (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate); 
-      (gloablHelper.mgrNet as MgrNetHelper).netGame.doRLS(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate,()=>{
+      (gloablHelper.mgrNet as MgrNetHelper).netGame.doRLS(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate, () => {
         this.eveRandAccountBtn();
       })
     });
@@ -142,7 +139,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
     return accountHelper;
   }
   addShow(info) {
-    let account = info.account, password = info.password, importTime = info.importTime, shareTime = info.shareTime
+    let account = info.account, password = info.password, importTime = info.importTime
     let ctr: PlayerWorkDataHelperCtr = UtilNode.addPrefabCtr(this.playerParentPos, this.playerItemPreb, null, (10000 - this.accoutCtrList.length));
     let no = this.accoutCtrList.length + 1;
     this.accountCntLabel.string = `账号数据(${no})`
@@ -152,7 +149,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
     ctr.setAccount(account);
     ctr.setPassword(password);
     ctr.setImoortTime(Utils.getCurrTime(importTime))
-    ctr.refreshMoney()
+    ctr.refreshMoney(info.money)
     ctr.registerRmCb(this.rmItem.bind(this));
     this.edAccount.string = '';
     this.edPassword.string = '';
@@ -237,7 +234,6 @@ export default class SceneAutoWorkHelper extends BaseScene {
   eveRandAccountBtn() {
     let acc = Utils.randomIphone()
     let pwd = Utils.randomString(9, 1);
-
     if (!!this.edPassword.string && "" != this.edPassword.string) {
       pwd = this.edPassword.string;
     }
@@ -248,13 +244,11 @@ export default class SceneAutoWorkHelper extends BaseScene {
     this.eveImportAccount();
     this.edAccount.string = acc
     this.edPassword.string = pwd;
-
-
     if (!cc.sys.isNative) {
       (gloablHelper.mgrNet as MgrNetHelper).netGame.getCaptchaIns().popUp()
-    }else{
+    } else {
       gloabl.platform.openCaptcha();
-    } 
+    }
   }
   //执行导入
   eveImportAccount() {
@@ -303,14 +297,14 @@ export default class SceneAutoWorkHelper extends BaseScene {
         if (!!ctr) {
           (gloablHelper.mgrNet as MgrNetHelper).netGame.doLogin(ctr.account, ctr.password, (err, currentData) => {
             if (null != err) {
-              ctr.showTips(EnumColoeHelper.ERROR, "登录失败");
+              ctr.showTips(EnumColoeHelper.ERROR, currentData.errorMessage || "登录失败");
               ctr.setBgState(EnumAccountStateHelper.ERROR);
               return;
             }
             (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.currGameCfg.gameShortName, currentData);
             ctr.setBgState(EnumAccountStateHelper.LOIN);
             ctr.showTips(EnumColoeHelper.SUCCESS, "登录成功");
-            ctr.refreshMoney();
+            ctr.refreshMoney(currentData.money);
             if (!!cb) { cb(ctr, currentData) }
           });
         }
@@ -341,7 +335,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
         (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.currGameCfg.gameShortName, _signServer);
         ctr.showTips(EnumColoeHelper.SUCCESS, "签到成功");
         ctr.refreshMoney(_signServer.money);
-      }, currentData.token)
+      }, currentData.token, currentData.account)
     }, false);
   }
   isBaseCanSendNet() {

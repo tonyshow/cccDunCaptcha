@@ -308,7 +308,7 @@
     "_prefab": {
       "__id__": 10
     },
-    "_opacity": 80,
+    "_opacity": 92,
     "_color": {
       "__type__": "cc.Color",
       "r": 7,
@@ -318,7 +318,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 161.52647059691714,
+      "width": 124.2511312283978,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -330,7 +330,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        280.404,
+        307,
         -4.699000000000002,
         0,
         0,
@@ -371,7 +371,7 @@
     "_useOriginalSize": false,
     "_string": "点击查看详情",
     "_N$string": "点击查看详情",
-    "_fontSize": 26,
+    "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
@@ -399,7 +399,7 @@
     "_target": null,
     "_alignFlags": 36,
     "_left": 0,
-    "_right": 39.596000000000004,
+    "_right": 13,
     "_top": 0,
     "_bottom": 0.10100000000000087,
     "_verticalCenter": 0,
@@ -1320,7 +1320,6 @@
     },
     "_resize": 2,
     "_N$layoutType": 1,
-    "_N$padding": 0,
     "_N$cellSize": {
       "__type__": "cc.Size",
       "width": 40,
@@ -2271,7 +2270,6 @@
     },
     "_resize": 2,
     "_N$layoutType": 1,
-    "_N$padding": 0,
     "_N$cellSize": {
       "__type__": "cc.Size",
       "width": 40,
@@ -2576,7 +2574,6 @@
     },
     "_resize": 0,
     "_N$layoutType": 0,
-    "_N$padding": 0,
     "_N$cellSize": {
       "__type__": "cc.Size",
       "width": 40,
@@ -3470,7 +3467,6 @@
     },
     "_resize": 2,
     "_N$layoutType": 1,
-    "_N$padding": 0,
     "_N$cellSize": {
       "__type__": "cc.Size",
       "width": 40,
@@ -3701,7 +3697,6 @@
     },
     "_resize": 0,
     "_N$layoutType": 0,
-    "_N$padding": 0,
     "_N$cellSize": {
       "__type__": "cc.Size",
       "width": 40,
@@ -3804,7 +3799,6 @@
     },
     "_resize": 0,
     "_N$layoutType": 0,
-    "_N$padding": 0,
     "_N$cellSize": {
       "__type__": "cc.Size",
       "width": 40,

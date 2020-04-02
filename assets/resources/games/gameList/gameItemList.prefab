@@ -135,7 +135,7 @@
         1,
         1,
         1,
-        0
+        1
       ]
     },
     "_eulerAngles": {
@@ -304,7 +304,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_type": 1,
     "_sizeMode": 0,

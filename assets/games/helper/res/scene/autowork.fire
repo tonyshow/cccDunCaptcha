@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        325.58823226856833,
+        636.5286717815625,
         0,
         0,
         0,
@@ -3704,7 +3704,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9bbda31e-ad49-43c9-aaf2-f7d9896bac69"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -3763,7 +3763,7 @@
     "alignMode": 1,
     "_target": null,
     "_alignFlags": 45,
-    "_left": 0,
+    "_left": 4.263256414560601e-14,
     "_right": 436.66666666666663,
     "_top": 0,
     "_bottom": 0,
@@ -4048,7 +4048,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9bbda31e-ad49-43c9-aaf2-f7d9896bac69"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -4392,7 +4392,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9bbda31e-ad49-43c9-aaf2-f7d9896bac69"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -4451,8 +4451,8 @@
     "alignMode": 1,
     "_target": null,
     "_alignFlags": 45,
-    "_left": 436.66666666666674,
-    "_right": -7.105427357601002e-14,
+    "_left": 436.6666666666667,
+    "_right": -2.842170943040401e-14,
     "_top": 0,
     "_bottom": 0,
     "_verticalCenter": 0,
@@ -5723,7 +5723,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -8236,7 +8236,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -8287,7 +8287,9 @@
       "__id__": 187
     },
     "_enabled": true,
-    "_normalMaterial": null,
+    "_normalMaterial": {
+      "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+    },
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
@@ -8343,7 +8345,7 @@
       "a": 200
     },
     "_N$normalSprite": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_N$pressedSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
@@ -10547,7 +10549,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -10598,7 +10600,9 @@
       "__id__": 239
     },
     "_enabled": true,
-    "_normalMaterial": null,
+    "_normalMaterial": {
+      "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+    },
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
@@ -10654,7 +10658,7 @@
       "a": 200
     },
     "_N$normalSprite": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_N$pressedSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
@@ -10991,7 +10995,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -11042,7 +11046,9 @@
       "__id__": 248
     },
     "_enabled": true,
-    "_normalMaterial": null,
+    "_normalMaterial": {
+      "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+    },
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
@@ -11098,7 +11104,7 @@
       "a": 200
     },
     "_N$normalSprite": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "deca21f6-e382-44d8-9266-04463ccd1248"
     },
     "_N$pressedSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"

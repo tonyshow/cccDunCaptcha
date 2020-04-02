@@ -31,7 +31,7 @@ export default class GameItemHelperCtr extends BasePreb {
     }
   }
   eveUrl() {
-    gloabl.gloabl.openAppUrl(this.url);
+    gloabl.platform.openAppUrl(this.url);
   }
   eveGo() {
     if (this.cb) {
