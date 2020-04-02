@@ -102,6 +102,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
     this.eveCloseAddNewAccount();
     this.gameNameLab.string = this.currGameCfg.chineseName;
 
+    // --------------------------------------------------------------------网易云注册 -----------------------------------------------------------------------------
     if (!cc.sys.isNative) {
       //初始化网易云注册 
       (gloablHelper.mgrNet as MgrNetHelper).netGame.doInitCaptchaIns((validate) => {
@@ -114,8 +115,44 @@ export default class SceneAutoWorkHelper extends BaseScene {
     this.addListerNet('captcha', (validate) => {
       (gloablHelper.mgrNet as MgrNetHelper).netGame.doRLS(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate, () => {
         this.eveRandAccountBtn();
+      }, () => {
+
       })
     });
+    // ------------------------------------------------------------------------------------------------------------------------------------------------------------
+    this.addListerNet('registerSuccess', (info) => {
+      console.log(info);
+      this.importAccountSuccess(info.account, info.pwd)
+      // let ctr = this.getAccCtrBy(info.account)
+      // if (!ctr) {
+      //   return;
+      // }
+      // ctr.showTips(EnumColoeHelper.SUCCESS, "注册成功");
+    })
+    this.addListerNet('loginSuccess', (info) => {
+      let ctr = this.getAccCtrBy(info.account)
+      if (!ctr) {
+        return;
+      }
+      // ctr.showTips(EnumColoeHelper.SUCCESS, "登录成功");
+    })
+    this.addListerNet('signSuccess', (info) => {
+      let ctr = this.getAccCtrBy(info.account)
+      if (!ctr) {
+        return;
+      }
+      // ctr.showTips(EnumColoeHelper.SUCCESS, "签到成功");
+    })
+
+
+    // -----------------将上次的邀请码调出------------
+    var eventHandler = new cc.Component.EventHandler();
+    eventHandler.component = "SceneAutoWorkHelper";
+    eventHandler.handler = "editBoxPopularizeIDClick";
+    this.EditBoxPopularizeID.editingReturn.push(eventHandler);
+  }
+  editBoxPopularizeIDClick() {
+    gloablHelper.mgrMsg.showPrompt('SceneAutoWorkHelper');
   }
   getShowShareTime(_sharTime) {
     if (_sharTime == 0) {
@@ -200,15 +237,15 @@ export default class SceneAutoWorkHelper extends BaseScene {
       //成功
       if (!err) {
         this.logMgr.setLog(EnumLogHelper.GetIphoneID, EnumLogOperateHeelper.OK);
-        this.logMgr.setLog(EnumLogHelper.GetIphoneCode + "&" + iphoneId, EnumLogOperateHeelper.NONE, data);
+        this.logMgr.setLog(EnumLogHelper.GetIphoneCode, EnumLogOperateHeelper.NONE, data);
         let doResetCnt = 60;
         let resetDelayTime = 3;
         (gloablHelper.mgrNet as MgrNetHelper).netCardShop.doGetCode(iphoneId, this.currGameCfg.sid, (err, data, leftResetCnt) => {
           if (!!err) {
             if (leftResetCnt <= 0) {
-              this.logMgr.setLog(EnumLogHelper.GetIphoneCode + "&" + iphoneId, EnumLogOperateHeelper.NONE, iphoneId + "重试" + (doResetCnt - leftResetCnt) + "失败");
+              this.logMgr.setLog(EnumLogHelper.GetIphoneCode, EnumLogOperateHeelper.NONE, iphoneId + "重试" + (doResetCnt - leftResetCnt) + "失败");
             } else {
-              this.logMgr.setLog(EnumLogHelper.GetIphoneCode + "&" + iphoneId, EnumLogOperateHeelper.NONE, iphoneId + "重试" + (doResetCnt - leftResetCnt));
+              this.logMgr.setLog(EnumLogHelper.GetIphoneCode, EnumLogOperateHeelper.NONE, iphoneId + "重试" + (doResetCnt - leftResetCnt));
             }
           }
         }, doResetCnt, resetDelayTime);
@@ -241,13 +278,24 @@ export default class SceneAutoWorkHelper extends BaseScene {
     this.lastPwd = pwd;
     this.edAccount.string = acc
     this.edPassword.string = pwd
-    this.eveImportAccount();
     this.edAccount.string = acc
     this.edPassword.string = pwd;
+    // -----------------------------------------------------------------------------------调取网易验证---------------------------------------------------------------------------------
     if (!cc.sys.isNative) {
       (gloablHelper.mgrNet as MgrNetHelper).netGame.getCaptchaIns().popUp()
     } else {
       gloabl.platform.openCaptcha();
+    }
+    // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  }
+  importAccountSuccess(account, password) {
+    let info = {
+      account: account,
+      password: password
+    }
+    let acchelper: AccountHelper = this.add(info);
+    if (!!acchelper) {
+      this.addShow(acchelper);
     }
   }
   //执行导入
@@ -286,6 +334,9 @@ export default class SceneAutoWorkHelper extends BaseScene {
     for (let i = this.accoutCtrList.length - 1; i >= 0; --i) {
       setTimeout(() => {
         let ctr: PlayerWorkDataHelperCtr = this.accoutCtrList[i];
+        if (!ctr) {
+          return;
+        }
         let info = (gloablHelper.mgrData as MgrDataHelper).getAccount(this.currGameCfg.gameShortName, ctr.account);
         if (!!info.isLogin) {
           if (!!_isTip) {
@@ -308,7 +359,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
             if (!!cb) { cb(ctr, currentData) }
           });
         }
-      }, 100 * (this.accoutCtrList.length - i))
+      }, 1000 * (this.accoutCtrList.length - i))
     }
   }
   //登录
@@ -360,5 +411,17 @@ export default class SceneAutoWorkHelper extends BaseScene {
         (gloablHelper.mgrNet as MgrNetHelper).netGame.doRegister(ctr.account, ctr.password);
       }
     }
+  }
+
+  getAccCtrBy(_account): PlayerWorkDataHelperCtr {
+    for (let i = 0; i < this.accoutCtrList.length; ++i) {
+      let ctr: PlayerWorkDataHelperCtr = this.accoutCtrList[i];
+      if (!!ctr) {
+        if (ctr.account == _account) {
+          return ctr;
+        }
+      }
+    }
+    return null;
   }
 }

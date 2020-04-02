@@ -39,6 +39,9 @@ export default class MsgLookAccHelper extends BaseMsgBox {
       this.nodeLogin.active = !(!!accCtr['isLogin'])
       this.nodeSign.active = !(!!accCtr['isSign'])
     }
+    this.nodeRegister.active = false;
+    this.nodeLogin.active = false
+    this.nodeSign.active = false
   }
   addItem(key, _info?: string) {
     if (-1 != _info.indexOf("|")) {

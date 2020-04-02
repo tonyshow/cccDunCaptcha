@@ -11,10 +11,13 @@ export default class NetHelper extends BaseHttp {
   }
   public gameShortName: any = "";
   //注册-》登录=》签到
-  doRLS(_acc: any, _pwd: any, telephone?: number, _code?: any, verifyInput?: string, finshCb?: Function) {
+  doRLS(_acc: any, _pwd: any, telephone?: number, _code?: any, verifyInput?: string, finshCb?: Function, registerCb?: Function) {
     this.doRegister(_acc, _pwd, telephone, _code, verifyInput, (errRegister) => {
       if (!!errRegister) {
         return;
+      }
+      if (!!registerCb) {
+        registerCb();
       }
       setTimeout(() => {
         this.doLS(_acc, _pwd, finshCb);
@@ -28,16 +31,18 @@ export default class NetHelper extends BaseHttp {
       if (!!errLogin) {
         return;
       }
-      gloablHelper.mgrMsg.showPrompt("登录成功")
+      // gloablHelper.mgrMsg.showPrompt("登录成功")
       setTimeout(() => {
         this.doSign((errSign) => {
           if (!!errSign) {
             return;
           }
-          gloablHelper.mgrMsg.showPrompt("签到成功")
-          if (!!finshCb) {
-            finshCb();
-          }
+          // gloablHelper.mgrMsg.showPrompt("签到成功") 
+          setTimeout(() => {
+            if (!!finshCb) {
+              finshCb();
+            }
+          }, 3000)
         }, loginInfo.token, loginInfo.account)
       }, 3000)
     })

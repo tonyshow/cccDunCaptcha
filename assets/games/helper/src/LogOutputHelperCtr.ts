@@ -30,15 +30,22 @@ export default class LogOutputHelperCtr extends BaseNode {
       this.bgNode.color = this.color1;
     }
   }
-  setLog(_infoType?: any, _operateType?: EnumLogOperateHeelper.OK, txt: string = "") {
+  setLog(_infoType?: any, _operateType?: EnumLogOperateHeelper, defaultKey?: any, txt: string = "") {
     let info = Utils.getTime() + _infoType + LogOperateHeelperTxt[_operateType]
+    if (!!defaultKey) {
+      info += ":" + defaultKey;
+    }
     if ('' != txt) {
       info += ":" + txt;
     }
     this.label.string = info
     if (_operateType == EnumLogOperateHeelper.OK || _operateType == EnumLogOperateHeelper.NONE) {
-      this.label.node.color = this.succColor;
-    } else {
+      this.label.node.color = cc.Color.GREEN;
+    }
+    else if (_operateType == EnumLogOperateHeelper.ING) {
+      this.label.node.color = cc.Color.YELLOW;
+    }
+    else {
       this.label.node.color = cc.Color.RED;
     }
   }

@@ -6,6 +6,7 @@ import NetHelper from "./NetHelper";
 import { EnumRegisterHelper } from "../enum/EnumRegisterHelper";
 import { EnumCardShopHelper } from "../enum/EnumCardShopHelper";
 import MgrDataHelper from "../mgr/MgrDataHelper";
+import { EnumLogHelper, EnumLogOperateHeelper } from "../enum/EnumLogHelper";
 export default class Net34cc extends NetHelper {
   getCfg(): any {
     return {
@@ -24,7 +25,7 @@ export default class Net34cc extends NetHelper {
   }
   // 44c1f58349454aa2932ef2c062383c78
   doRegister(_acc: any, _pwd: any, telephone?: number, _code?: any, verifyInput?: string, finshCb?: Function): boolean {
-    let baseIsRegister = super.doRegister(_acc, _pwd, telephone, _code, verifyInput);
+    let baseIsRegister = super.doRegister(_acc, _pwd, telephone, _code, verifyInput, finshCb);
     if (!baseIsRegister) {
 
     }
@@ -50,9 +51,11 @@ export default class Net34cc extends NetHelper {
     console.log("sendData=" + JSON.stringify(data))
     let net = new BaseHttp()
     net.setContentType("application/json;charset=UTF-8");
+    gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.RegisterGameAccout, EnumLogOperateHeelper.ING, _acc);
     net.post(iphoneRegisterPost, JSON.stringify(data), (serverInfo) => {
       console.log(serverInfo);
-      gloablHelper.mgrMsg.showPrompt("注册成功");
+      gloablHelper.mgrEveListener.fire('registerSuccess', { account: _acc, pwd: _pwd, isRegister: true });
+      gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.RegisterGameAccout, EnumLogOperateHeelper.OK, _acc);
       (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.getCfg().gameShortName, { account: _acc, isRegister: true });
       if (!!finshCb) {
         finshCb(null, serverInfo)
@@ -74,6 +77,7 @@ export default class Net34cc extends NetHelper {
     }
     let loginPost = this.getCfg().loginPost;
     net.setContentType("application/json;charset=UTF-8");
+    gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.AccountGameLogin, EnumLogOperateHeelper.ING, _acc);
     net.post(loginPost, JSON.stringify(data), (serverInfo) => {
       console.log(serverInfo);
       if (!!_cb) {
@@ -86,7 +90,10 @@ export default class Net34cc extends NetHelper {
           tmpJData.currentData.member.isLogin = true;
           (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.getCfg().gameShortName, { account: _acc, isLogin: true });
           _cb(null, tmpJData.currentData.member);
+          gloablHelper.mgrEveListener.fire('loginSuccess', tmpJData.currentData.member);
+          gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.AccountGameLogin, EnumLogOperateHeelper.OK, _acc);
         } else {
+          gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.AccountGameLogin, EnumLogOperateHeelper.ERROR, _acc);
           _cb(tmpJData.currentStatus, tmpJData);
         }
       }
@@ -104,6 +111,7 @@ export default class Net34cc extends NetHelper {
       }
     }
     net.setContentType("application/json;charset=UTF-8");
+    gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.AccountGameSign, EnumLogOperateHeelper.ING, arg[1]);
     net.post(this.getCfg().signInUrl, JSON.stringify(data), (serverInfo) => {
       console.log(serverInfo);
       if (!!_cb) {
@@ -112,8 +120,11 @@ export default class Net34cc extends NetHelper {
         if (!!tmpJData && tmpJData.currentStatus == 200) {
           _cb(null, tmpJData.currentData);
           (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.getCfg().gameShortName, { account: arg[1], isSign: true });
+          gloablHelper.mgrEveListener.fire('signSuccess', { account: arg[1], isSign: true });
+          gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.AccountGameSign, EnumLogOperateHeelper.OK, arg[1]);
         } else {
           // 错误已经签到
+          gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.AccountGameSign, EnumLogOperateHeelper.ERROR, arg[1]);
           _cb(tmpJData.currentStatus, tmpJData);
         }
       }
