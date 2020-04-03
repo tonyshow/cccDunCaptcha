@@ -134,15 +134,28 @@ export default class SceneAutoWorkHelper extends BaseScene {
       if (!ctr) {
         return;
       }
-      // ctr.showTips(EnumColoeHelper.SUCCESS, "登录成功");
+      ctr.setBgState(EnumAccountStateHelper.LOIN);
+      ctr.showTips(EnumColoeHelper.SUCCESS, "登录成功");
+      ctr.refreshMoney(info.money);
     })
     this.addListerNet('signSuccess', (info) => {
       let ctr = this.getAccCtrBy(info.account)
       if (!ctr) {
         return;
       }
-      // ctr.showTips(EnumColoeHelper.SUCCESS, "签到成功");
+      ctr.setBgState(EnumAccountStateHelper.SIGN);
+      ctr.refreshMoney(info.money);
+      ctr.showTips(EnumColoeHelper.SUCCESS, "签到成功");
     })
+
+
+    this.addLister('doRegister', (info) => {
+      let account = info.account;
+      let password = info.password;
+      this.doGetVerificationRegister(account, password);
+    })
+
+
 
 
     // -----------------将上次的邀请码调出------------
@@ -268,13 +281,8 @@ export default class SceneAutoWorkHelper extends BaseScene {
     let y = this.addNewMsg.parent.height * 0.5;
     this.addNewMsg.runAction(cc.moveTo(0.1, 0, y));
   }
-  // 随机导入
-  eveRandAccountBtn() {
-    let acc = Utils.randomIphone()
-    let pwd = Utils.randomString(9, 1);
-    if (!!this.edPassword.string && "" != this.edPassword.string) {
-      pwd = this.edPassword.string;
-    }
+  // 执行获取验证码注册
+  doGetVerificationRegister(acc, pwd) {
     this.lastAcc = acc;
     this.lastPwd = pwd;
     this.edAccount.string = acc
@@ -287,7 +295,16 @@ export default class SceneAutoWorkHelper extends BaseScene {
     } else {
       gloabl.platform.openCaptcha();
     }
-    // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  }
+  // 随机导入
+  eveRandAccountBtn() {
+    let acc = Utils.randomIphone()
+    let pwd = Utils.randomString(9, 1);
+    if (!!this.edPassword.string && "" != this.edPassword.string) {
+      pwd = this.edPassword.string;
+    }
+    this.doGetVerificationRegister(acc, pwd);
   }
   importAccountSuccess(account, password): PlayerWorkDataHelperCtr {
     let info = {

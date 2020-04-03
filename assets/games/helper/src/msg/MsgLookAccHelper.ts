@@ -39,9 +39,6 @@ export default class MsgLookAccHelper extends BaseMsgBox {
       this.nodeLogin.active = !(!!accCtr['isLogin'])
       this.nodeSign.active = !(!!accCtr['isSign'])
     }
-    this.nodeRegister.active = false;
-    this.nodeLogin.active = false
-    this.nodeSign.active = false
   }
   addItem(key, _info?: string) {
     if (-1 != _info.indexOf("|")) {
@@ -62,7 +59,7 @@ export default class MsgLookAccHelper extends BaseMsgBox {
     if (!!accCtr && !!accCtr['isRegister']) {
       return gloablHelper.mgrMsg.showPrompt("已注册");
     }
-
+    gloablHelper.mgrEveListener.fire('doRegister', { account: this.account, password: accCtr.password })
   }
   eveLogin() {
     console.log(this.account)
@@ -79,7 +76,6 @@ export default class MsgLookAccHelper extends BaseMsgBox {
     }
   }
   getAccount(): AccountHelper {
-
     let currGameCfg = (gloablHelper.mgrNet as MgrNetHelper).netGame.getCfg();
     let list = (gloablHelper.mgrData as MgrDataHelper).getCurrAccountList(currGameCfg.gameShortName);
     if (!!list) {

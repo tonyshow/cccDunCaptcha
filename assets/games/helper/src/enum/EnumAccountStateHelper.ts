@@ -4,6 +4,7 @@ export enum EnumAccountStateHelper {
   NOLOIN,//未登录
   LOIN,//登录成功
   ERROR,//失败
+  SIGN,//签到成功
 }
 
 //游戏

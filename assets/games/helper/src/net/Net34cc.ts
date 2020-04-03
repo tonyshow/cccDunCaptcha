@@ -119,8 +119,10 @@ export default class Net34cc extends NetHelper {
         let tmpJData = JSON.parse(serverInfo)
         if (!!tmpJData && tmpJData.currentStatus == 200) {
           _cb(null, tmpJData.currentData);
-          (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.getCfg().gameShortName, { account: arg[1], isSign: true });
-          gloablHelper.mgrEveListener.fire('signSuccess', { account: arg[1], isSign: true });
+          tmpJData.currentData.account = arg[1];
+          tmpJData.currentData.isSign = true;
+          (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.getCfg().gameShortName, tmpJData.currentData);
+          gloablHelper.mgrEveListener.fire('signSuccess', tmpJData.currentData);
           gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.AccountGameSign, EnumLogOperateHeelper.OK, arg[1]);
         } else {
           // 错误已经签到
