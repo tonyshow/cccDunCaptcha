@@ -108,13 +108,13 @@ export default class SceneAutoWorkHelper extends BaseScene {
       (gloablHelper.mgrNet as MgrNetHelper).netGame.doInitCaptchaIns((validate) => {
         console.log("收到网易云验证码" + validate);
         (gloablHelper.mgrNet as MgrNetHelper).netGame.doRLS(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate, () => {
-          this.eveRandAccountBtn();
+
         })
       });
     }
     this.addListerNet('captcha', (validate) => {
       (gloablHelper.mgrNet as MgrNetHelper).netGame.doRLS(this.lastAcc, this.lastPwd, Number(this.lastAcc), this.EditBoxPopularizeID.string, validate, () => {
-        this.eveRandAccountBtn();
+
       }, () => {
 
       })
@@ -122,12 +122,12 @@ export default class SceneAutoWorkHelper extends BaseScene {
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------
     this.addListerNet('registerSuccess', (info) => {
       console.log(info);
-      this.importAccountSuccess(info.account, info.pwd)
-      // let ctr = this.getAccCtrBy(info.account)
-      // if (!ctr) {
-      //   return;
-      // }
-      // ctr.showTips(EnumColoeHelper.SUCCESS, "注册成功");
+      let ctr: PlayerWorkDataHelperCtr = this.importAccountSuccess(info.account, info.pwd)
+      this.eveRandAccountBtn();
+      if (!ctr) {
+        return;
+      }
+      ctr.showTips(EnumColoeHelper.SUCCESS, "注册成功");
     })
     this.addListerNet('loginSuccess', (info) => {
       let ctr = this.getAccCtrBy(info.account)
@@ -175,7 +175,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
     (gloablHelper.mgrData as MgrDataHelper).refreshLocalStorage(this.currGameCfg.gameShortName);
     return accountHelper;
   }
-  addShow(info) {
+  addShow(info): PlayerWorkDataHelperCtr {
     let account = info.account, password = info.password, importTime = info.importTime
     let ctr: PlayerWorkDataHelperCtr = UtilNode.addPrefabCtr(this.playerParentPos, this.playerItemPreb, null, (10000 - this.accoutCtrList.length));
     let no = this.accoutCtrList.length + 1;
@@ -191,6 +191,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
     this.edAccount.string = '';
     this.edPassword.string = '';
     this.accoutCtrList.push(ctr);
+    return ctr;
   }
   rmItem(_account) {
     // 删除数据
@@ -288,15 +289,16 @@ export default class SceneAutoWorkHelper extends BaseScene {
     }
     // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
   }
-  importAccountSuccess(account, password) {
+  importAccountSuccess(account, password): PlayerWorkDataHelperCtr {
     let info = {
       account: account,
       password: password
     }
     let acchelper: AccountHelper = this.add(info);
     if (!!acchelper) {
-      this.addShow(acchelper);
+      return this.addShow(acchelper);
     }
+    return null;
   }
   //执行导入
   eveImportAccount() {

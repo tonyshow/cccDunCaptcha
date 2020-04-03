@@ -103,8 +103,7 @@
         "inspector",
         "cocos-services"
       ]
-    },
-    "worker": {}
+    }
   },
   "panels": {},
   "panelLabelWidth": {
