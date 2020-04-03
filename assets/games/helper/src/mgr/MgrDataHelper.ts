@@ -41,6 +41,8 @@ export default class MgrDataHelper extends BaseMgrData {
         accountHelper.importTime = info.importTime
         accountHelper.money = info.money
         accountHelper.shareTime = info.shareTime;
+        accountHelper.isRegister = info.isRegister;
+        accountHelper.lastSignTime = info.lastSignTime;
         listHelp.add(info.account, accountHelper);
       }
     }
@@ -81,6 +83,7 @@ export default class MgrDataHelper extends BaseMgrData {
       return;
     }
     (this.accountList[_gameShortName] as AccountListHelper).refreshAccount(info)
+    this.refreshLocalStorage(_gameShortName);
   }
 
   public getAccountInfo(_gameShortName: string, account: string) {

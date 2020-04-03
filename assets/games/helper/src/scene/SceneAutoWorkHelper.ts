@@ -69,7 +69,6 @@ export default class SceneAutoWorkHelper extends BaseScene {
   @property(cc.EditBox)
   EditBoxPopularizeID: cc.EditBox = null;
 
-
   lastAcc: string = '';
   lastPwd: string = "";
   private checkoutIphoneApiAcAndPwd() {
@@ -147,17 +146,11 @@ export default class SceneAutoWorkHelper extends BaseScene {
       ctr.refreshMoney(info.money);
       ctr.showTips(EnumColoeHelper.SUCCESS, "签到成功");
     })
-
-
     this.addLister('doRegister', (info) => {
       let account = info.account;
       let password = info.password;
       this.doGetVerificationRegister(account, password);
     })
-
-
-
-
     // -----------------将上次的邀请码调出------------
     var eventHandler = new cc.Component.EventHandler();
     eventHandler.component = "SceneAutoWorkHelper";
@@ -306,6 +299,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
     }
     this.doGetVerificationRegister(acc, pwd);
   }
+  //注册成功后再导入到列表
   importAccountSuccess(account, password): PlayerWorkDataHelperCtr {
     let info = {
       account: account,

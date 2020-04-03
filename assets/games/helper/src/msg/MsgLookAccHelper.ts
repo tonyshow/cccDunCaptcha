@@ -32,12 +32,21 @@ export default class MsgLookAccHelper extends BaseMsgBox {
   start() {
     let accCtr = this.getAccount();
     if (!!accCtr) {
+      let isRegister = (!!accCtr['isRegister']);
       this.nodeRegister.active = !(!!accCtr['isRegister'])
-      if (!!accCtr['isLogin']) {
+      if (false == isRegister) {
+        this.nodeLogin.active = isRegister;
+        this.nodeSign.active = isRegister;
+        return;
+      }
+      let isLogin = (!!accCtr['isLogin']);
+      if (isLogin) {
         this.nodeRegister.active = false;
+        this.nodeSign.active = !(!!accCtr['isSign'])
+      } else {
+        this.nodeSign.active = false;
       }
       this.nodeLogin.active = !(!!accCtr['isLogin'])
-      this.nodeSign.active = !(!!accCtr['isSign'])
     }
   }
   addItem(key, _info?: string) {
@@ -55,25 +64,27 @@ export default class MsgLookAccHelper extends BaseMsgBox {
   eveRegister() {
     console.log(this.account)
     let accCtr = this.getAccount();
-
     if (!!accCtr && !!accCtr['isRegister']) {
       return gloablHelper.mgrMsg.showPrompt("已注册");
     }
     gloablHelper.mgrEveListener.fire('doRegister', { account: this.account, password: accCtr.password })
+    this._close();
   }
   eveLogin() {
-    console.log(this.account)
     let accCtr = this.getAccount();
     if (!!accCtr && !!accCtr['isLogin']) {
       return gloablHelper.mgrMsg.showPrompt("已登录");
     }
+    (gloablHelper.mgrNet as MgrNetHelper).netGame.doLogin(this.account, accCtr.password, (err, currentData) => { });
+    this._close();
   }
   eveSign() {
-    console.log(this.account)
     let accCtr = this.getAccount();
     if (!!accCtr && !!accCtr['isSign']) {
       return gloablHelper.mgrMsg.showPrompt("已签到");
     }
+    (gloablHelper.mgrNet as MgrNetHelper).netGame.doSign((err, _signServer) => { }, accCtr['token'], accCtr['account'])
+    this._close();
   }
   getAccount(): AccountHelper {
     let currGameCfg = (gloablHelper.mgrNet as MgrNetHelper).netGame.getCfg();

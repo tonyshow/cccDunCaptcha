@@ -88,7 +88,8 @@ export default class Net34cc extends NetHelper {
           tmpJData.currentData.member.token = tmpJData.currentData.token;
           tmpJData.currentData.member.money = tmpJData.currentData.member.memberBal;
           tmpJData.currentData.member.isLogin = true;
-          (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.getCfg().gameShortName, { account: _acc, isLogin: true });
+          (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.getCfg().gameShortName, { account: _acc, isLogin: true, isRegister: true, token: tmpJData.currentData.token });
+
           _cb(null, tmpJData.currentData.member);
           gloablHelper.mgrEveListener.fire('loginSuccess', tmpJData.currentData.member);
           gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.AccountGameLogin, EnumLogOperateHeelper.OK, _acc);
@@ -121,11 +122,12 @@ export default class Net34cc extends NetHelper {
           _cb(null, tmpJData.currentData);
           tmpJData.currentData.account = arg[1];
           tmpJData.currentData.isSign = true;
+          tmpJData.currentData.lastSignTime = Date.now();
           (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.getCfg().gameShortName, tmpJData.currentData);
           gloablHelper.mgrEveListener.fire('signSuccess', tmpJData.currentData);
           gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.AccountGameSign, EnumLogOperateHeelper.OK, arg[1]);
         } else {
-          // 错误已经签到
+          // 错误已经签到 
           gloablHelper.mgrEveListener.fire('cmdLog', EnumLogHelper.AccountGameSign, EnumLogOperateHeelper.ERROR, arg[1]);
           _cb(tmpJData.currentStatus, tmpJData);
         }

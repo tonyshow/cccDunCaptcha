@@ -10,8 +10,6 @@ export default class AccountHelper34cc extends AccountHelper {
   // 获取json对象
   public getJData(): any {
     let info = super.getJData();
-    // info.money = this['memberBal'] || 0;
-    // info.name = this['realName'] || '名字未知'
     return info;
   }
 
