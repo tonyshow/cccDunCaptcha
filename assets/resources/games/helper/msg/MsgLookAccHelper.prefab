@@ -1463,7 +1463,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 110,
+      "width": 80,
       "height": 100.8
     },
     "_anchorPoint": {
@@ -1476,7 +1476,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        0,
+        3.719,
         0,
         0,
         0,
@@ -1516,7 +1516,7 @@
     "_useOriginalSize": false,
     "_string": "返回",
     "_N$string": "返回",
-    "_fontSize": 55,
+    "_fontSize": 40,
     "_lineHeight": 80,
     "_enableWrapText": false,
     "_N$file": null,
@@ -1805,7 +1805,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        493,
+        -493,
         0,
         0,
         0,
@@ -1876,7 +1876,7 @@
       "ctor": "Float64Array",
       "array": [
         -206.66666666666669,
-        -43.14699999999999,
+        -15.107,
         0,
         0,
         0,
@@ -1974,7 +1974,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Label",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 50
     },
@@ -1998,7 +1998,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 80,
       "height": 100.8
     },
     "_anchorPoint": {
@@ -2011,7 +2011,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        0,
+        4.496,
         0,
         0,
         0,
@@ -2051,7 +2051,7 @@
     "_useOriginalSize": false,
     "_string": "注册",
     "_N$string": "注册",
-    "_fontSize": 50,
+    "_fontSize": 40,
     "_lineHeight": 80,
     "_enableWrapText": false,
     "_N$file": null,
@@ -2260,7 +2260,7 @@
     "_left": 0,
     "_right": 0,
     "_top": 0,
-    "_bottom": 1.853000000000005,
+    "_bottom": 29.893,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -2331,7 +2331,7 @@
       "ctor": "Float64Array",
       "array": [
         -2.842170943040401e-14,
-        -43.14699999999999,
+        -15.107,
         0,
         0,
         0,
@@ -2429,7 +2429,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Label",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 62
     },
@@ -2453,7 +2453,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 80,
       "height": 100.8
     },
     "_anchorPoint": {
@@ -2466,7 +2466,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        0,
+        4.496,
         0,
         0,
         0,
@@ -2506,7 +2506,7 @@
     "_useOriginalSize": false,
     "_string": "登录",
     "_N$string": "登录",
-    "_fontSize": 50,
+    "_fontSize": 40,
     "_lineHeight": 80,
     "_enableWrapText": false,
     "_N$file": null,
@@ -2715,7 +2715,7 @@
     "_left": 0,
     "_right": 0,
     "_top": 0,
-    "_bottom": 1.853000000000005,
+    "_bottom": 29.893,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -2786,7 +2786,7 @@
       "ctor": "Float64Array",
       "array": [
         206.66666666666663,
-        -43.14699999999999,
+        -15.107,
         0,
         0,
         0,
@@ -2884,7 +2884,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Label",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 74
     },
@@ -2908,7 +2908,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 80,
       "height": 100.8
     },
     "_anchorPoint": {
@@ -2921,7 +2921,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        0,
+        4.496,
         0,
         0,
         0,
@@ -2961,7 +2961,7 @@
     "_useOriginalSize": false,
     "_string": "签到",
     "_N$string": "签到",
-    "_fontSize": 50,
+    "_fontSize": 40,
     "_lineHeight": 80,
     "_enableWrapText": false,
     "_N$file": null,
@@ -3170,7 +3170,7 @@
     "_left": 0,
     "_right": 0,
     "_top": 0,
-    "_bottom": 1.853000000000005,
+    "_bottom": 29.893,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -3268,7 +3268,7 @@
     "_enabled": true,
     "alignMode": 1,
     "_target": null,
-    "_alignFlags": 41,
+    "_alignFlags": 44,
     "_left": 0,
     "_right": 0,
     "_top": 0,

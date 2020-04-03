@@ -26,6 +26,7 @@ export default class AccountHelper extends BaseAccount {
   //显示
   public getShowInfo(): any {
     let info = super.getShowInfo();
+    info.isRegister = this.isRegister;
     info.showRegister = "注册状态|" + (this.isRegister ? "已注册" : "未注册")
     if (!!this.isLogin) {
       info.showRegister = "注册状态|" + "已注册";

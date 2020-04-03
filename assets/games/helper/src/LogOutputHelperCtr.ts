@@ -19,7 +19,7 @@ export default class LogOutputHelperCtr extends BaseNode {
 
   @property(cc.color)
   succColor: cc.Color = cc.Color.BLACK;
-
+  public operateType = EnumLogOperateHeelper.NONE;
   setBgColer(_typeColor: number = 1) {
     let n = _typeColor % 2;
     n = Math.ceil(n);
@@ -31,6 +31,7 @@ export default class LogOutputHelperCtr extends BaseNode {
     }
   }
   setLog(_infoType?: any, _operateType?: EnumLogOperateHeelper, defaultKey?: any, txt: string = "") {
+    this.operateType = _operateType;
     let info = Utils.getTime() + _infoType + LogOperateHeelperTxt[_operateType]
     if (!!defaultKey) {
       info += ":" + defaultKey;

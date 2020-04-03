@@ -194,6 +194,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
     ctr.setImoortTime(Utils.getCurrTime(importTime))
     ctr.refreshMoney(info.money)
     ctr.registerRmCb(this.rmItem.bind(this));
+    if (info.isRegister == false) { ctr.setBgState(EnumAccountStateHelper.ERROR) }
     this.edAccount.string = '';
     this.edPassword.string = '';
     this.accoutCtrList.push(ctr);
