@@ -1,10 +1,11 @@
 temp
 library
+local
 buildConfig.js
 .DS_Store
 */**._DS_Store
 ._DS_Store
 .*.*
 packages/pack/android/.gradle
-build
+build 
 packages/node_modules
