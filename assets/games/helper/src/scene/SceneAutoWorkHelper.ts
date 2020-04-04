@@ -71,6 +71,8 @@ export default class SceneAutoWorkHelper extends BaseScene {
 
   lastAcc: string = '';
   lastPwd: string = "";
+
+  isAutoRegister:boolean=true;//自动注册
   private checkoutIphoneApiAcAndPwd() {
     let acc = this.iphoneApiAccount.string;
     let pwd = this.iphoneApiPassword.string;
@@ -91,10 +93,14 @@ export default class SceneAutoWorkHelper extends BaseScene {
     this.cardShopOperate.active = false;
     this.isOpenAccountEditor = false;
     let acc_list_helper = (gloablHelper.mgrData as MgrDataHelper).initLocalStorage(this.currGameCfg.gameShortName);
+    let idx =0;
     if (!!acc_list_helper) {
       for (let key in acc_list_helper) {
         let info = acc_list_helper[key];
-        this.addShow(info);
+        setTimeout(()=>{
+          this.addShow(info);
+        },80*idx)
+        ++idx;
       }
     }
     this.closeAddNewAccountNode.height = this.node.height * 2;
@@ -121,8 +127,12 @@ export default class SceneAutoWorkHelper extends BaseScene {
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------
     this.addListerNet('registerSuccess', (info) => {
       console.log(info);
+      if( true == this.isAutoRegister ){
+        this.eveRandAccountBtn();
+      } 
+      this.isAutoRegister=true;
       let ctr: PlayerWorkDataHelperCtr = this.importAccountSuccess(info.account, info.pwd)
-      this.eveRandAccountBtn();
+
       if (!ctr) {
         return;
       }
@@ -134,7 +144,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
         return;
       }
       ctr.setBgState(EnumAccountStateHelper.LOIN);
-      ctr.showTips(EnumColoeHelper.SUCCESS, "登录成功");
+      // ctr.showTips(EnumColoeHelper.SUCCESS, "登录成功");
       ctr.refreshMoney(info.money);
     })
     this.addListerNet('signSuccess', (info) => {
@@ -144,21 +154,30 @@ export default class SceneAutoWorkHelper extends BaseScene {
       }
       ctr.setBgState(EnumAccountStateHelper.SIGN);
       ctr.refreshMoney(info.money);
-      ctr.showTips(EnumColoeHelper.SUCCESS, "签到成功");
+      // ctr.showTips(EnumColoeHelper.SUCCESS, "签到成功");
     })
     this.addLister('doRegister', (info) => {
       let account = info.account;
       let password = info.password;
+      this.isAutoRegister=info.isAutoRegister || false;
       this.doGetVerificationRegister(account, password);
     })
     // -----------------将上次的邀请码调出------------
     var eventHandler = new cc.Component.EventHandler();
+    eventHandler.target=this.node;
     eventHandler.component = "SceneAutoWorkHelper";
-    eventHandler.handler = "editBoxPopularizeIDClick";
+    eventHandler.handler = "editBoxPopularizeIDClick"; 
+    this.EditBoxPopularizeID.editingDidEnded.push(eventHandler);
     this.EditBoxPopularizeID.editingReturn.push(eventHandler);
+
+   
+    let PopularizeID =gloablHelper.mgrData.storage.getString( `${this.currGameCfg.gameShortName}PopularizeID`);
+    if(!!PopularizeID){
+      this.EditBoxPopularizeID.string=PopularizeID;
+    } 
   }
   editBoxPopularizeIDClick() {
-    gloablHelper.mgrMsg.showPrompt('SceneAutoWorkHelper');
+    gloablHelper.mgrData.storage.setString( `${this.currGameCfg.gameShortName}PopularizeID`, this.EditBoxPopularizeID.string)
   }
   getShowShareTime(_sharTime) {
     if (_sharTime == 0) {
@@ -196,7 +215,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
     ctr.registerRmCb(this.rmItem.bind(this));
     if (info.isRegister == false) { ctr.setBgState(EnumAccountStateHelper.ERROR) }
     this.edAccount.string = '';
-    this.edPassword.string = '';
+    // this.edPassword.string = '';
     this.accoutCtrList.push(ctr);
     return ctr;
   }
@@ -213,6 +232,10 @@ export default class SceneAutoWorkHelper extends BaseScene {
       }
     }
     gloablHelper.mgrMsg.showPrompt("删除成功");
+  }
+  // 复制所有账号
+  eveCopyAccount(){
+    gloablHelper.mgrMsg.showPrompt("复制成功!请保存好账号");
   }
   //登录卡商操作
   eveLoginIphoneShop() {
@@ -298,7 +321,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
     if (!!this.edPassword.string && "" != this.edPassword.string) {
       pwd = this.edPassword.string;
     }
-    this.doGetVerificationRegister(acc, pwd);
+    this.doGetVerificationRegister(acc, pwd); 
   }
   //注册成功后再导入到列表
   importAccountSuccess(account, password): PlayerWorkDataHelperCtr {
@@ -368,12 +391,12 @@ export default class SceneAutoWorkHelper extends BaseScene {
             }
             (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.currGameCfg.gameShortName, currentData);
             ctr.setBgState(EnumAccountStateHelper.LOIN);
-            ctr.showTips(EnumColoeHelper.SUCCESS, "登录成功");
+            // ctr.showTips(EnumColoeHelper.SUCCESS, "登录成功");
             ctr.refreshMoney(currentData.money);
             if (!!cb) { cb(ctr, currentData) }
           });
         }
-      }, 1000 * (this.accoutCtrList.length - i))
+      }, 50 * (this.accoutCtrList.length - i))
     }
   }
   //登录
@@ -398,7 +421,7 @@ export default class SceneAutoWorkHelper extends BaseScene {
         }
         currentData.isSign = true;
         (gloablHelper.mgrData as MgrDataHelper).refreshAccount(this.currGameCfg.gameShortName, _signServer);
-        ctr.showTips(EnumColoeHelper.SUCCESS, "签到成功");
+        // ctr.showTips(EnumColoeHelper.SUCCESS, "签到成功");
         ctr.refreshMoney(_signServer.money);
       }, currentData.token, currentData.account)
     }, false);

@@ -50,6 +50,9 @@ export default class MsgLookAccHelper extends BaseMsgBox {
     }
   }
   addItem(key, _info?: string) {
+    if( -1 == key.indexOf('show') ){
+      return;
+    }
     if (-1 != _info.indexOf("|")) {
       let ctr: LookAccHelperCtr = UtilNode.addPrefabCtr(this.posNode, this.itemPreb)
       ctr.setTxt(key, _info);

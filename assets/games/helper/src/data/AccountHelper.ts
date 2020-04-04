@@ -10,6 +10,7 @@ export default class AccountHelper extends BaseAccount {
   private isRegister: boolean = false//是否已经注册
   private money: number = 0;
   private lastSignTime: number = 0;//最后签到时间
+
   //auto Definition variable end
   constructor() { super(); }
   //auto Definition function start
@@ -19,7 +20,7 @@ export default class AccountHelper extends BaseAccount {
     info.importTime = this.importTime;
     info.isRegister = this.isRegister;
     info.lastSignTime = this.lastSignTime;
-    info.money = this.money;
+    info.money = this.money; 
     return info;
   }
 
@@ -39,6 +40,7 @@ export default class AccountHelper extends BaseAccount {
       }
     }
     info.showSign = "签到状态|" + (this.isSign ? "已签到" : "未签到")
+
     return info;
   }
   //auto Definition function end
