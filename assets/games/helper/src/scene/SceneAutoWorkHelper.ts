@@ -169,12 +169,11 @@ export default class SceneAutoWorkHelper extends BaseScene {
     eventHandler.handler = "editBoxPopularizeIDClick"; 
     this.EditBoxPopularizeID.editingDidEnded.push(eventHandler);
     this.EditBoxPopularizeID.editingReturn.push(eventHandler);
-
-   
     let PopularizeID =gloablHelper.mgrData.storage.getString( `${this.currGameCfg.gameShortName}PopularizeID`);
     if(!!PopularizeID){
       this.EditBoxPopularizeID.string=PopularizeID;
     } 
+    // --------------------------------------------
   }
   editBoxPopularizeIDClick() {
     gloablHelper.mgrData.storage.setString( `${this.currGameCfg.gameShortName}PopularizeID`, this.EditBoxPopularizeID.string)

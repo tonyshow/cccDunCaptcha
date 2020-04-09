@@ -27,9 +27,6 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 17
-      },
-      {
         "__id__": 18
       },
       {
@@ -40,10 +37,13 @@
       },
       {
         "__id__": 21
+      },
+      {
+        "__id__": 22
       }
     ],
     "_prefab": {
-      "__id__": 22
+      "__id__": 23
     },
     "_opacity": 255,
     "_color": {
@@ -247,11 +247,11 @@
         "__id__": 14
       },
       {
-        "__id__": 15
+        "__id__": 16
       }
     ],
     "_prefab": {
-      "__id__": 16
+      "__id__": 17
     },
     "_opacity": 255,
     "_color": {
@@ -562,7 +562,11 @@
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 0.95,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 15
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$transition": 3,
@@ -631,6 +635,16 @@
       "__id__": 7
     },
     "_id": ""
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "",
+    "_componentId": "99f16AnE7JKCZskCfdNyfNE",
+    "handler": "eveCopy",
+    "customEventData": ""
   },
   {
     "__type__": "cc.Widget",
